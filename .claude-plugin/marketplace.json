@@ -1,0 +1,14 @@
+{
+  "name": "deckgen-plugins",
+  "description": "Executive-grade PDF deck generation from repository content.",
+  "owner": {
+    "name": "nickth3man"
+  },
+  "plugins": [
+    {
+      "name": "deckgen",
+      "source": ".",
+      "description": "Markdown slide spec -> deterministic Rust renderer -> geometry gate -> raster look loop."
+    }
+  ]
+}

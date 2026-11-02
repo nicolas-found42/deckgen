@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "deckgen",
+  "version": "1.0.0",
+  "description": "Render executive-grade A4-landscape PDF decks from any repository's content: Markdown slide spec -> deterministic Rust renderer -> geometry gate -> raster look loop."
+}

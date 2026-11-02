@@ -1,0 +1,22 @@
+{
+  "name": "deckgen-plugins",
+  "description": "Executive-grade PDF deck generation from repository content.",
+  "plugins": [
+    {
+      "name": "deckgen",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "description": "Markdown slide spec -> deterministic Rust renderer -> geometry gate -> raster look loop.",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ],
+  "interface": {
+    "displayName": "Deckgen Plugins"
+  }
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "deckgen"
+  short_description: "Render an executive PDF deck from any repository"
