@@ -74,6 +74,25 @@ def main(argv=None) -> int:
                 print(f"installed (copy): {target}")
             else:
                 link_skill(target, dry_run=args.dry_run)
+            # the loop procedure is deckgen-dev-facing but omp agents run it; keep it fresh
+            loop_target = Path.home() / ".omp/agent/skills/deckgen-loop"
+            loop_source = ROOT / "workflows/deckgen-loop"
+            if loop_target.is_symlink() and loop_target.resolve() == loop_source.resolve():
+                print(f"already installed: {loop_target} -> {loop_source}")
+            elif loop_target.is_dir():
+                print(shlex.join(["cp", str(loop_source / "SKILL.md"), str(loop_target / "SKILL.md")]), flush=True)
+                if not args.dry_run:
+                    loop_target.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(loop_source / "SKILL.md", loop_target / "SKILL.md")
+                print(f"refreshed: {loop_target / 'SKILL.md'}")
+            elif not loop_target.exists():
+                print(shlex.join(["ln", "-s", str(loop_source), str(loop_target)]), flush=True)
+                if not args.dry_run:
+                    loop_target.parent.mkdir(parents=True, exist_ok=True)
+                    loop_target.symlink_to(loop_source)
+                print(f"installed: {loop_target} -> {loop_source}")
+            else:
+                raise ValueError(f"unexpected state at {loop_target}; move it aside and rerun")
             return 0
 
         if args.agent == "skills":
